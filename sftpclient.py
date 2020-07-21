@@ -11,8 +11,6 @@ YMD = now.strftime("%Y%m%d")
 HMD = now.strftime("%Y%M")
 YMD = '20200620'
 
-
-
 JSON_BASE = '/home/mrp/Script/'
 
 PLOG = '/home/mrp/Script/paramiko.log'
@@ -72,9 +70,6 @@ if __name__ == "__main__":
     set_Env()
     local_base = LOCAL + YMD + '/';
     remove_basefile(local_base);
-
-    print (HOSTS)
-
     for host in HOSTS :
         try :
             f = sftpconn(PLOG, USERNAME, PASSWORD, host, '22', False);

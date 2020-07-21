@@ -38,12 +38,14 @@ class sftpconn(object):
 		return True
 
 	
-	def get(self, file_formats, local_dir, remote_dir):
+	def get(self, file_formats, local_dir, local_base_dir, remote_dir):
 		files_copied = 0
 		errors = 0
 		summary = ''
 		actual_files = []
 		remote_files = []
+		print ('local_dir:', local_dir)
+		print ('local_base_dir:', local_base_dir)
 		try:
 			for f in self.sftp.listdir(remote_dir):
 				remote_files.append(f)
@@ -58,6 +60,7 @@ class sftpconn(object):
 				print ('actual_file:', actual_file)
 				base_file = actual_file.replace(remote_dir, '')
 				self.sftp.get(actual_file, local_dir + base_file)
+				self.sftp.get(actual_file, local_base_dir + base_file)
 
 				files_copied += 1
 				summary += "[Copied] " + local_dir + base_file + '\n'
