@@ -3,9 +3,9 @@ import datetime, os
 import glob
 from sftpconn import sftpconn
 import shutil
+import json
 
 
-paramikolog = '/home/mrp/Script/paramiko.log'
 now = datetime.datetime.now() - datetime.timedelta(minutes=10)
 YMD = now.strftime("%Y%m%d")
 HMD = now.strftime("%Y%M")
@@ -14,6 +14,8 @@ YMD = '20200620'
 
 
 JSON_BASE = '/home/mrp/Script/'
+
+PLOG = '/home/mrp/Script/paramiko.log'
 
 LOCAL  = '/home/mrp/Script/logs/'
 REMOTE = '/logs/uplus'
@@ -75,7 +77,7 @@ if __name__ == "__main__":
 
     for host in HOSTS :
         try :
-            f = sftpconn(paramikolog, USERNAME, PASSWORD, host, '22', False);
+            f = sftpconn(PLOG, USERNAME, PASSWORD, host, '22', False);
             for servicenum in DIRS :
                 local_host = local_base + '/' + host + '/'
                 check_dir(local_host)
