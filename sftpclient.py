@@ -1,20 +1,26 @@
 import paramiko
 import datetime, os
+import glob
 from sftpconn import sftpconn
+import shutil
+
 
 paramikolog = '/home/mrp/Script/paramiko.log'
 now = datetime.datetime.now() - datetime.timedelta(minutes=10)
 YMD = now.strftime("%Y%m%d")
 HMD = now.strftime("%Y%M")
-
 YMD = '20200620'
+
+
+
+JSON_BASE = '/home/mrp/Script/'
 
 LOCAL  = '/home/mrp/Script/logs/'
 REMOTE = '/logs/uplus'
 DIRS  = ['/arentService11/tloLog/', '/arentService12/tloLog/']
 
 def set_Env():
-    with open("/home/limym/personalize/media/env.json") as json_file:
+    with open(JSON_BASE + "mrp/env.json") as json_file:
         json_data = json.load(json_file)
         global HOSTS, USERNAME, PASSWORD
         HOSTS = json_data["server"]
